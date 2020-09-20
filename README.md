@@ -1,2 +1,2 @@
-# DC_HarvardX
-Repository for Data Science Certificate
+# Covid_Final_Project
+Repository for Data Science Certificate final project
