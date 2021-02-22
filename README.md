@@ -1,2 +1,1 @@
-# Covid_Final_Project
-Repository for Data Science Certificate final project
+# Covid-19 Analysis
