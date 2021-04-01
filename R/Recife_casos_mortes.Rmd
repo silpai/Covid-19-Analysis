@@ -1,0 +1,93 @@
+---
+title: "Casos de COVID-19 em Recife,Brasil"
+author: "Sil Pai"
+date: "10/12/2020"
+output:
+  html_document:
+    keep_md: true
+---
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.path = "README_figs/README-"
+)
+```
+
+## Informações dos Dados 
+
+Dados em formato csv foram diretamente coletados no site oficial do Ministério da Saúde do Brasil https://covid.saude.gov.br/ .
+
+```{r include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+```
+
+
+```{r include=FALSE}
+#dados officiais ministerio da saude do brasil via csv
+url <- "https://github.com/silpai/Covid-19-Analysis/tree/master/Data/HIST_PAINEL_COVIDBR_11out2020.zip"
+temp <- tempfile()
+download.file(url, temp)
+unzip(temp, "HIST_PAINEL_COVIDBR_11out2020.csv")
+dat <- read.csv("HIST_PAINEL_COVIDBR_11out2020.csv", header = TRUE, sep = ";") 
+unlink(temp)
+```
+
+```{r include=FALSE}
+dados_ms <- mutate(dat,
+             year  = year(data),
+             month = month(data),
+             day   = day(data),
+              mabb= month.abb[month])
+tail(dados_ms)
+```
+
+
+```{r include=FALSE}
+Recife <- dados_ms %>% filter (estado == "PE" & municipio== "Recife" & casosNovos >=0 )  %>%  
+  arrange(data) %>%
+  mutate(total_cases = casosAcumulado,
+         death_total = obitosAcumulado,
+         REC_infectada_realmente = death_total*73,
+         REC_infectada_realmente_Percent=(REC_infectada_realmente/1645727)*100, 
+         REC_infectada_publicado_Percent=(casosAcumulado/1645727)*100,
+         mortality = (death_total/total_cases)*100)%>%
+  select(codmun ,coduf,data,month, day,semanaEpi, populacaoTCU2019,casosNovos, obitosNovos,
+         total_cases,death_total,REC_infectada_realmente,REC_infectada_realmente_Percent,REC_infectada_publicado_Percent, mortality)
+Recife
+tail(Recife)
+```
+
+### Gráfico Interativo de Casos diários Confirmados e de Mortes em Recife
+
+```{r echo=FALSE, warning=FALSE}
+Recife %>% plot_ly(x = ~ data,
+                   y = ~ obitosNovos, 
+                   name = "Death", 
+                   fillcolor = '#E41317',
+                   type = 'scatter',
+                   mode = 'none', 
+                   stackgroup = 'one') %>%
+  add_trace(y = ~ casosNovos , 
+            name = "Confirmed",
+            fillcolor = 'yellow') %>%
+  layout(title = "Daily  Confirmed and Death Cases of Covid19 in Recife (Pernambuco, Brazil)",
+         legend = list(x = 0.1, y = 0.9),
+         yaxis = list(title = "Number of Cases"),
+         xaxis = list(title = "Source: Ministério de Saúde do Brasil" ))
+```
+
+#### Distribuição mensal de novos casos em Recife
+
+```{r echo=FALSE}
+Recife%>% 
+  ggplot(aes(x =day, y = casosNovos))+
+  geom_point(aes(colour = "blue"), show.legend = F, shape = 20) +
+  facet_wrap(~ month, nrow = 2)+
+  ggtitle("Daily cases distribution in Recife by month") +
+  xlab ("days") +
+  ylab ("New Cases")
+```
