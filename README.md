@@ -4,7 +4,7 @@ Data sources:
 
 - [Ministério da Saúde](https://covid.saude.gov.br/);
 - [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19)
-- [covid19br] (https://github.com/wcota/covid19br), DOI: 10.1590/SciELOPreprints.362
+- [covid19br](https://github.com/wcota/covid19br), DOI: 10.1590/SciELOPreprints.362
 
 ## objetivos da Pesquisa
 
@@ -15,4 +15,5 @@ Este é um trabalho em desenvolvimento
 ## Inspirações
 
  https://liibre.github.io/coronabr/ - Desenvolvedores: ([Sara](https://twitter.com/mortarasara), [Andrea](https://twitter.com/SanchezTapiaA) ou [Karlo](https://twitter.com/kguidonimartins)).
+ 
 https://github.com/wcota/covid19br, DOI: 10.1590/SciELOPreprints.362 - Desenvolvedor ([Wesley Cota] (https://covid19br.wcota.me/)
