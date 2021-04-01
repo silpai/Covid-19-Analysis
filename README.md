@@ -12,4 +12,4 @@ Data sources:
 
  https://liibre.github.io/coronabr/ - Desenvolvedores: ([Sara](https://twitter.com/mortarasara), [Andrea](https://twitter.com/SanchezTapiaA) ou [Karlo](https://twitter.com/kguidonimartins)).
  
-https://github.com/wcota/covid19br, DOI: 10.1590/SciELOPreprints.362 - Desenvolvedor ([Wesley Cota] (https://covid19br.wcota.me/)
+https://github.com/wcota/covid19br, DOI: 10.1590/SciELOPreprints.362 - Desenvolvedor ([Wesley Cota](https://covid19br.wcota.me/)
