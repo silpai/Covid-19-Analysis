@@ -1,3 +1,5 @@
+pip install dash dash-renderer dash-html-components dash-core-components plotly 
+
 import pandas as pd
 import datetime
 
