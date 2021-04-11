@@ -100,4 +100,5 @@ def update_graph_live(n):
     return fig1a    
     
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    #app.run_server(debug=False)
+    app.run_server(debug=True, use_reloader= False)
