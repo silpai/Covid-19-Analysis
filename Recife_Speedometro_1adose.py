@@ -11,8 +11,10 @@ import dash  # (version 1.12.0)
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+import dash_auth
 
 app = dash.Dash(__name__)
+server= Recife_Speedometro_1adose.server
 
 # ---------- Import and clean data (importing csv into pandas)
 URL = 'https://conectarecife.recife.pe.gov.br/vacinometro/'
